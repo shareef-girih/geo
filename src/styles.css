@@ -348,3 +348,111 @@ main {
   .burst { display: none; }
   .badge svg, .btn-primary, .steps li, .handle-dot { animation: none; transition: none; }
 }
+
+/* ---------- Home ---------- */
+
+.home h1 {
+  margin: 8px 0 6px;
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1.05;
+  font-weight: 800;
+  color: var(--lapis-deep);
+}
+
+.home .lead {
+  margin: 0 0 24px;
+  max-width: 40ch;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.lesson-list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lesson-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 88px;
+  padding: 14px 18px;
+  background: var(--tile);
+  border: 3px solid var(--lapis);
+  border-radius: 22px;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 5px 0 var(--lapis);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+a.lesson-card:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--lapis);
+}
+
+.lesson-card.is-locked {
+  border-color: var(--line);
+  box-shadow: none;
+  color: var(--ink-soft);
+}
+
+.lesson-number {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: var(--saffron);
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.is-locked .lesson-number { background: var(--line); }
+
+.lesson-text {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+}
+
+.lesson-title { font-weight: 800; font-size: 1.3rem; line-height: 1.15; }
+.lesson-blurb { font-size: 1rem; color: var(--ink-soft); line-height: 1.3; }
+
+.lesson-status {
+  flex: none;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--lapis);
+}
+
+.lesson-status.is-done { color: var(--turquoise); }
+.is-locked .lesson-status { color: var(--ink-soft); font-weight: 600; }
+
+.finish-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--lapis);
+  border: 3px solid var(--lapis);
+}
+
+@media (max-width: 420px) {
+  .lesson-card { flex-wrap: wrap; }
+  .lesson-status { margin-left: 72px; }
+}

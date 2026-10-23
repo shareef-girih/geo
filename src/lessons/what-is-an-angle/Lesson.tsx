@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 import { AngleStage } from '../../components/AngleStage';
 import { ReadAloudButton } from '../../components/ReadAloud';
@@ -78,7 +79,10 @@ export function AngleLesson() {
         </div>
         <h1>You found every kind of angle!</h1>
         <p className="lead">Right, straight, acute and obtuse. Next time, we will use angles to build shapes.</p>
-        <button type="button" className="btn btn-primary" onClick={restart}>Play again</button>
+        <div className="finish-actions">
+          <Link className="btn btn-primary" to="/">Back to lessons</Link>
+          <button type="button" className="btn btn-secondary" onClick={restart}>Play again</button>
+        </div>
       </section>
     );
   }

@@ -5,7 +5,9 @@ trigonometry. Kids learn by dragging and building, not by reading.
 
 ## Stack
 
-- React 19 + TypeScript + Vite (static site, no server)
+- React 19 + TypeScript + Vite (static site, no server), pnpm for packages
+- TanStack Router (code-based routes in `src/router.tsx`) and TanStack Store
+  (`src/progress.ts`). Prefer TanStack libraries when a new need fits one.
 - Plain SVG for all drawing; no canvas or charting libraries
 - Vitest for tests
 - Progress is stored only in the browser (`localStorage`). No accounts, no
@@ -24,7 +26,7 @@ trigonometry. Kids learn by dragging and building, not by reading.
 
 1. Maths lives in `src/geometry/`, never inside components. If a component
    needs a calculation, add a tested function to the engine first.
-2. Run `npm test` and `npm run typecheck` before every commit. Both must pass.
+2. Run `pnpm test` and `pnpm typecheck` before every commit. Both must pass.
 3. Coordinates: the engine uses maths coordinates (y points up, angles
    counter-clockwise, degrees). Convert to SVG screen coordinates (y down)
    only at the edge, using `toScreen` / `fromScreen`.

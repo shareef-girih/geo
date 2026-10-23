@@ -1,10 +1,12 @@
+import { Store, useStore } from '@tanstack/react-store';
+
 /**
  * Lesson progress, kept only in this browser. Nothing is sent anywhere.
- * Storage can be missing or blocked (private mode), so every call is guarded.
+ * Storage can be missing or blocked (private mode), so every access is guarded.
  */
 const KEY = 'girihlabs.progress.v1';
 
-interface Progress {
+export interface Progress {
   completed: string[];
 }
 
@@ -18,14 +20,22 @@ const load = (): Progress => {
   }
 };
 
-export const isComplete = (lessonId: string): boolean => load().completed.includes(lessonId);
+export const progressStore = new Store<Progress>(load());
+
+progressStore.subscribe(() => {
+  try {
+    window.localStorage.setItem(KEY, JSON.stringify(progressStore.state));
+  } catch {
+    // Progress just won't be remembered; the lessons still work.
+  }
+});
 
 export const markComplete = (lessonId: string): void => {
-  try {
-    const p = load();
-    if (!p.completed.includes(lessonId)) p.completed.push(lessonId);
-    window.localStorage.setItem(KEY, JSON.stringify(p));
-  } catch {
-    // Progress just won't be remembered; the lesson still works.
-  }
+  progressStore.setState((p) =>
+    p.completed.includes(lessonId) ? p : { completed: [...p.completed, lessonId] },
+  );
 };
+
+/** React hook: has this lesson been completed? Re-renders when progress changes. */
+export const useIsComplete = (lessonId: string): boolean =>
+  useStore(progressStore, (p) => p.completed.includes(lessonId));

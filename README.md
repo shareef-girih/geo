@@ -10,15 +10,17 @@ Live at [girihlabs.com](https://girihlabs.com) (coming soon).
 ## Run it
 
 ```bash
-npm install
-npm run dev        # local site at http://localhost:5173
-npm test           # geometry engine tests
-npm run build      # type-check and build to dist/
+pnpm install
+pnpm dev           # local site at http://localhost:5173
+pnpm test          # geometry engine tests
+pnpm build         # type-check and build to dist/
 ```
 
 ## How it's built
 
-- **React + TypeScript + Vite**, deployed as a static site.
+- **React + TypeScript + Vite**, deployed as a static site on Cloudflare Pages.
+- **TanStack Router** for pages and **TanStack Store** for lesson progress.
+- **pnpm** for packages.
 - **A small geometry engine** in `src/geometry/`: plain TypeScript with tests,
   kept separate from the UI so the maths stays correct.
 - **SVG** for every shape, with Pointer Events so mouse, finger and stylus all work.
